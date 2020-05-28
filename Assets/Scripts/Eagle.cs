@@ -18,6 +18,4 @@ public class Eagle : MonoBehaviour
 
         transform.position += Vector3.down * _speed * Time.deltaTime;
     }
-
-
 }
