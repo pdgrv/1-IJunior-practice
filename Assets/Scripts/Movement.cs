@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
-
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
