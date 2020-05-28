@@ -56,6 +56,6 @@ public class Movement : MonoBehaviour
         _animator.SetFloat("Speed", _rigidbody.velocity.magnitude);
 
         _grounded = Physics2D.OverlapCapsule(_collider.bounds.center, _collider.size * 1.1f, direction: CapsuleDirection2D.Vertical, 0, _groundMask) != null;
-        
+
     }
 }
