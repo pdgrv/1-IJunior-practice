@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class PatrolMovement : MonoBehaviour
+public class Opossum : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] Transform _targetPoint;
+    [SerializeField] private float speed;
+    [SerializeField] private Transform _targetPoint;
         
     private SpriteRenderer _sprite;
     private Vector3 _startPosition;

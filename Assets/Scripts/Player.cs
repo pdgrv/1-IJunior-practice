@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" )
+        if (collision.gameObject.TryGetComponent(out Opossum opossum) || collision.gameObject.TryGetComponent(out Eagle eagle))
         {
             Debug.Log("Придется начинать сначала.");
             transform.position = _startPosition;
