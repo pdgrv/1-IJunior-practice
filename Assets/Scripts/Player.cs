@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
             _gemCount++;
             Debug.Log("Total gem count: " + _gemCount);
             Destroy(collision.gameObject);
-        }
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
