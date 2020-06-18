@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private int _health = 100;
+
+    private int _maxHealth;
     private int _gemCount;
     private Vector3 _startPosition;
 
     private void Start()
     {
         _startPosition = transform.position;
+
+        _maxHealth = _health;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +33,23 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Придется начинать сначала.");
             transform.position = _startPosition;
+        }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        _health -= damage;
+    }
+
+    public void ApplyHeal(int heal)
+    {
+        if (_health <= _maxHealth-heal)
+        {
+            _health += heal;
+        }
+        else
+        {
+            _health = _maxHealth;
         }
     }
 }
