@@ -1,20 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _health = 100;
+    [SerializeField] private int _maxHealth = 100;
 
-    private int _maxHealth;
+    private int _health;
     private int _gemCount;
     private Vector3 _startPosition;
+
+    public event UnityAction<int> HealthChanged;
 
     private void Start()
     {
         _startPosition = transform.position;
 
-        _maxHealth = _health;
+        _health = _maxHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +28,7 @@ public class Player : MonoBehaviour
             _gemCount++;
             Debug.Log("Total gem count: " + _gemCount);
             Destroy(collision.gameObject);
-        }        
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,18 +42,21 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
-        _health -= damage;
+        if (_health >= damage)
+            _health -= damage;
+        else
+            _health = 0;
+
+        HealthChanged?.Invoke(_health);
     }
 
     public void ApplyHeal(int heal)
     {
-        if (_health <= _maxHealth-heal)
-        {
+        if (_health <= _maxHealth - heal)
             _health += heal;
-        }
         else
-        {
             _health = _maxHealth;
-        }
+
+        HealthChanged?.Invoke(_health);
     }
 }
